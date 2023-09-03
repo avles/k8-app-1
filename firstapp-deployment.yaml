@@ -1,21 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-deployment
+  name: busybox-deployment
   labels:
-    app: nginx
+    app: busybox
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: nginx
+      app: busybox
   template:
     metadata:
       labels:
-        app: nginx
+        app: busybox
     spec:
       containers:
-      - name: nginx
-        image: nginx:1.17.9
-        ports:
-        - containerPort: 80
+      - image: busybox
+        name: busybox
+        command: ["sh", "-c", 'while true; do echo "Running..."; sleep 2h; done']
+        imagePullPolicy: Always
+        securityContext:
+          runAsUser: 3000
