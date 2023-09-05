@@ -15,9 +15,12 @@ spec:
         app: busybox
     spec:
       containers:
-      - image: busybox
-        name: busybox
-        command: ["sh", "-c", 'while true; do echo "Running..."; sleep 2h; done']
-        imagePullPolicy: Always
-        securityContext:
-          runAsUser: 3000
+        - image: busybox
+          name: busybox
+          command:
+            - sh
+            - '-c'
+            - while true; do echo "Running..."; sleep 2h; done
+          imagePullPolicy: Always
+          securityContext:
+            runAsUser: 3000
