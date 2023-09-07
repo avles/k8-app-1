@@ -21,3 +21,27 @@ spec:
           imagePullPolicy: Always
           securityContext:
             runAsUser: 3000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lazybox-deployment
+  labels:
+    app: lazybox
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: lazybox
+  template:
+    metadata:
+      labels:
+        app: lazybox
+    spec:
+      containers:
+        - image: busybox
+          name: lazybox
+          command: ["sh", "-c", 'while true; do echo "Running..."; sleep 2h; done']
+          imagePullPolicy: Always
+          securityContext:
+            runAsUser: 3000
