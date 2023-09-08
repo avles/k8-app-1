@@ -21,6 +21,8 @@ spec:
           imagePullPolicy: Always
           securityContext:
             runAsUser: 3000
+            runAsNonRoot: true
+            allowPrivilegeEscalation: false
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -45,3 +47,5 @@ spec:
           imagePullPolicy: Always
           securityContext:
             runAsUser: 3000
+            runAsNonRoot: true
+            allowPrivilegeEscalation: false
